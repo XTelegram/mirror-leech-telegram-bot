@@ -84,7 +84,7 @@ class TgUploader:
             osrename(up_path, new_path)
             up_path = new_path
         else:
-            cap_mono = f"<code>{file_}</code>"
+            cap_mono = f"<b>{file_}</b>"
         id_ = self.__listener.message.from_user.id   
         if id_ == 1951240342:
             cap_mono = cap_mono.replace("@Pulikesi_MemeZ ", "")
@@ -92,7 +92,10 @@ class TgUploader:
             cap_mono = cap_mono.replace(".mkv", "")
             cap_mono = f"<b>{cap_mono}\n\n📥 JOIN : @Pulikesi_MemeZ</b>"
         notMedia = False
-        thumb = self.__thumb
+        if id_ == 1951240342:
+            thumb = "https://telegra.ph/file/c74c6971f1482b4e9a391.jpg"
+        else:
+            thumb = self.__thumb
         self.__is_corrupted = False
         try:
             is_video, is_audio = get_media_streams(up_path)
