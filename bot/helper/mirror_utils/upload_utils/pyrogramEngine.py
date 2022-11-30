@@ -92,10 +92,7 @@ class TgUploader:
             cap_mono = cap_mono.replace(".mkv", "")
             cap_mono = f"<b>{cap_mono}\n\n📥 JOIN : @Pulikesi_MemeZ</b>"
         notMedia = False
-        if id_ == 1951240342:
-            thumb = "https://telegra.ph/file/c74c6971f1482b4e9a391.jpg"
-        else:
-            thumb = self.__thumb
+        thumb = self.__thumb
         self.__is_corrupted = False
         try:
             is_video, is_audio = get_media_streams(up_path)
