@@ -70,6 +70,13 @@ class TgUploader:
         self.__listener.onUploadComplete(None, size, self.__msgs_dict, self.__total_files, self.__corrupted, self.name)
 
     def __upload_file(self, up_path, file_, dirpath):
+        PRENAME_X = "@Pulikesi_MemeZ"
+        if file_.startswith('www'):
+            file_ = ' '.join(file_.split()[1:])
+            file_ = f"{PRENAME_X}"+ file_.strip('-').strip('_')
+            new_path = ospath.join(dirpath, file_)
+            osrename(up_path, new_path)
+            up_path = new_path
         if LEECH_FILENAME_PERFIX := config_dict['LEECH_FILENAME_PERFIX']:
             cap_mono = f"{LEECH_FILENAME_PERFIX} <code>{file_}</code>"
             file_ = f"{LEECH_FILENAME_PERFIX} {file_}"
@@ -78,6 +85,12 @@ class TgUploader:
             up_path = new_path
         else:
             cap_mono = f"<code>{file_}</code>"
+        id_ = self.__listener.message.from_user.id   
+        if id_ == 1951240342:
+            cap_mono = cap_mono.replace("@Pulikesi_MemeZ ", "")
+            cap_mono = cap_mono.replace("HEVC", "#HEVC")
+            cap_mono = cap_mono.replace(".mkv", "")
+            cap_mono = f"<b>{cap_mono}\n\n📥 JOIN : @Pulikesi_MemeZ</b>"
         notMedia = False
         thumb = self.__thumb
         self.__is_corrupted = False
